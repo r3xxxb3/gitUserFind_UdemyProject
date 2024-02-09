@@ -3,7 +3,7 @@ import GithubContext from "../../context/github/GithubContext"
 
 function UserSearch() {
     const [text, setText] = useState('')
-    const {users} = useContext(GithubContext)
+    const {users, searchUsers,setClear} = useContext(GithubContext)
 
     const handleChange = (e) => setText(e.target.value)
     const handleSubmit = (e) => {
@@ -12,9 +12,15 @@ function UserSearch() {
         if(text === ''){
             document.getElementById('alert-text').showModal()
         }else{
+            searchUsers(text)
+
             setText('')
         }
-    }  
+    }
+
+    const handleClear = () => {
+        setClear()
+    }
 
     return (
         <>
@@ -33,7 +39,7 @@ function UserSearch() {
                 </div>
                 {users.length > 0 && (
                 <div className="w-auto">
-                    <button className="btn btn-ghost btn-lg">Clear</button>
+                    <button onClick={handleClear} className="btn btn-ghost btn-lg">Clear</button>
                 </div>
                 )}
             </div>
