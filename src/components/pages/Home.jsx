@@ -1,4 +1,5 @@
 import UserResult from "../user/UserResult"
+import UserSearch from "../user/UserSearch"
 
 function Home() {
   return (
@@ -9,6 +10,7 @@ function Home() {
     //     </h1>
     // </div>
     <>
+      <UserSearch/>
       <UserResult/>
     </>
   )

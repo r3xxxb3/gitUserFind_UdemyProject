@@ -14,10 +14,31 @@ export const GithubProvider = ({children}) => {
 
     const [state, dispatch] = useReducer(githubReducer, initialState)
 
+    // get initial users (testing purpose)
     const fetchUsers = async () => {
         setLoading()
-        
+
         const response = await fetch(`${GITHUB_URL}/users`, {
+            headers: {
+                Authorization: `token ${GITHUB_TOKEN}`,
+            }
+        })
+        
+        const data = await response.json()
+        dispatch({
+            type: 'GET_USERS',
+            payload: data,
+        })
+    }
+
+    // Search Userss
+    const searchUsers = async (text) => {
+        setLoading()
+
+        const params = ({
+            q: text
+        })
+        const response = await fetch(`${GITHUB_URL}/search/users?${params}`, {
             headers: {
                 Authorization: `token ${GITHUB_TOKEN}`,
             }
