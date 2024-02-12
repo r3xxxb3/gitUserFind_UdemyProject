@@ -1,16 +1,18 @@
 import { useState, useContext } from "react"
 import GithubContext from "../../context/github/GithubContext"
+import AlertContext from "../../context/alert/AlertContext"
 
 function UserSearch() {
     const [text, setText] = useState('')
-    const {users, searchUsers,setClear} = useContext(GithubContext)
+    const { users, searchUsers, setClear } = useContext(GithubContext)
+    const { alert, setAlert } = useContext(AlertContext)
 
     const handleChange = (e) => setText(e.target.value)
     const handleSubmit = (e) => {
         e.preventDefault()
 
         if(text === ''){
-            document.getElementById('alert-text').showModal()
+            setAlert('Please Enter Something !', 'error')
         }else{
             searchUsers(text)
 
@@ -43,15 +45,6 @@ function UserSearch() {
                 </div>
                 )}
             </div>
-            <dialog id="alert-text" className="modal modal-bottom sm:modal-middle">
-                <div className="modal-box">
-                    <h3 className="font-bold text-lg">Please Enter Something in the Search Box !</h3>
-                    <p className="py-4">Click anywhere outside to close</p>
-                </div>
-                <form method="dialog" className="modal-backdrop">
-                    <button>close</button>
-                </form>
-            </dialog>
         </>
     )
 }
