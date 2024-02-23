@@ -4,7 +4,7 @@ import Loading from "../shared/Loading"
 import GithubContext from "../../context/github/GithubContext"
 
 function UserResult() {
-    const {users, isLoading, fetchUsers} = useContext(GithubContext)
+    const {users, isLoading} = useContext(GithubContext)
     // console.log(users)
 
     if(!isLoading){
