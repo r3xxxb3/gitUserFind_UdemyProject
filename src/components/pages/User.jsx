@@ -39,7 +39,7 @@ function User() {
         }
         
         getUserData()
-    }, [])
+    }, [dispatch, params.login])
 
     if (isLoading) {
         return <Loading/>
